@@ -1,0 +1,28 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+MSG DB '-1$' 
+
+.CODE
+MAIN PROC 
+    MOV AX, @DATA
+    MOV DS, AX
+    
+    MOV BX, -2
+    MOV AH, 2
+    
+    CMP BX, 0
+    JL NEGATIVE
+    JMP EXIT
+    
+    NEGATIVE:
+    MOV BL, MSG
+    MOV DX, BX
+    INT 21H
+    
+    EXIT:
+    MOV AH, 4CH
+    INT 21H
+    MAIN ENDP
+END MAIN

@@ -1,0 +1,18 @@
+.MODEL SMALL
+.STACK 100H
+.CODE
+
+MAIN PROC
+    CMP AX,0
+        JL NEGATIVE
+    NEGATIVE:
+        MOV BX, -1
+        JMP END_CASE
+    END_CASE:
+    
+    EXIT:
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
+       
