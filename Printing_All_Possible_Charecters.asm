@@ -1,0 +1,22 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+
+.CODE
+MAIN PROC
+    MOV CX, 255
+    MOV BL, 0
+TOP:
+    MOV AH, 2
+    MOV DL, BL
+    INT 21H
+    INC BL
+    DEC CX
+    JNZ TOP
+    
+    EXIT:
+    MOV AH, 4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
+    

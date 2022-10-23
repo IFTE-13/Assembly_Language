@@ -1,0 +1,33 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+MSG DB 'HELLO WORLD$'
+
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+    
+    MOV CX, 5
+    
+    PRINT_LOOP:
+    LEA DX,MSG  ;LOADS STRING  WITH LOAD EFFECTIVE ADDRESS 
+    MOV AH, 9
+    INT 21H
+    DEC CX 
+    
+    MOV AH,2
+    MOV DL, 0AH
+    INT 21H
+    MOV DL, 0DH
+    INT 21H
+    
+    JG PRINT_LOOP
+    
+    EXIT:
+    MOV AH, 4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
+    
