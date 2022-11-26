@@ -1,0 +1,20 @@
+XOR BX, BX 
+MOV CL, 4
+MOV AH,1
+INT 21H
+
+WHILE_:
+    CMP AL, 0DH
+    JE END_WHILE
+    CMP AL, 39H
+    JG ALP
+    AND AL, 0FH
+    JMP SHIFT
+ALP:
+    SUB AL, 37H
+SHIFT:
+    SHL BX, CL
+    OR BL, AL
+    INT 21H
+    JMP WHILE_
+END_WHILE:
