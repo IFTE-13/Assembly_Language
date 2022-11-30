@@ -1,0 +1,42 @@
+.model small
+
+.stack 100h
+.DATA
+MSG DB 'Before Reverse', 0AH, 0DH, '$'
+MSG1 DB 0AH, 0DH, 'After Reverse', 0AH, 0DH, '$' 
+
+.CODE
+MOV AX, @DATA
+MOV DS, AX
+LEA DX, MSG
+MOV AH, 9
+INT 21H
+
+MOV AH, 1
+INT 21H
+MOV BX, AX
+PUSH BX
+INT 21H 
+MOV CX, AX
+PUSH CX
+INT 21H
+PUSH AX   
+
+LEA DX, MSG1
+MOV AH, 9
+INT 21H
+
+POP BX 
+MOV AH, 2
+MOV DX,BX
+INT 21H 
+
+POP CX  
+MOV AH, 2
+MOV DX,CX
+INT 21H 
+
+POP AX 
+MOV AH, 2
+MOV DX,AX
+INT 21H
