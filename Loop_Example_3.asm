@@ -7,11 +7,13 @@
 .CODE
     MAIN PROC
         MOV CX, 19
-        MOV AX, 5
         
-        TOP:
-          MUL CX
-          ADD AX, AX
+        
+        TOP: 
+          MOV AX, 5
+          MUL CX  
+          MOV BX, 0
+          ADD BX, AX
           LOOP TOP
          
-        ADD AX, 100
+    ADD BX, 100
